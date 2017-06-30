@@ -1,5 +1,4 @@
 """ Wrapper for Status Page API"""
-import logging
 import requests
 import json
 
@@ -52,6 +51,16 @@ class StatusPageConnector(object):
 		return self.connect()
 
 	def update_page_profile_attribute(self, attribute, value):
+		"""Update an attribute of your Status Page profile.
+
+		:param attribute: name of the attribute to be updated
+		:type attribute: basestring
+		:param value: new value of the attribute.
+		:type value: basestring
+		:return: dictionary containing the response given by the server, or a string
+		containing the error log if something went wrong while performing the operation.
+		:rtype: dict | basestring
+		"""
 		post_params = {'page[' + attribute + ']': value}
 		response = self.connect(module='', method='patch', post_params=post_params)
 		if response.status_code == 201:
@@ -91,6 +100,8 @@ class StatusPageConnector(object):
 	def get_subscribers_for_incident(self, incident_id):
 		"""Getting the users subscribed to a certain incident of your Status Page account.
 
+		:param incident_id: identifier of the incident.
+		:type incident_id: basestring
 		:return: users subscribed to a certain incident of your Status Page account.
 		:rtype: requests.models.Response
 		"""
@@ -107,6 +118,8 @@ class StatusPageConnector(object):
 	def delete_subscriber(self, subscriber_id):
 		"""Delete a subscriber from your Status Page instance.
 
+		:param subscriber_id: identifier of the subscriber to be deleted.
+		:type subscriber_id: basestring
 		:return: The status of the operation of deleting an user of your Status Page account.
 		:rtype: requests.models.Response
 		"""
@@ -144,5 +157,12 @@ class StatusPageConnector(object):
 
 	@staticmethod
 	def parse_response(response):
+		"""Parse a response from the Status Page server
+
+		:param response: response from Status Page server.
+		:type response: requests.models.Response
+		:return: parsed response
+		:rtype: dict
+		"""
 		return json.loads(response.content)
 
