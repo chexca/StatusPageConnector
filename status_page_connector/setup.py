@@ -10,6 +10,6 @@ setup(
     author_email = 'chexca20@gmail.com',
     url = 'https://github.com/chexca/StatusPageConnector',
     download_url = 'https://github.com/chexca/StatusPageConnector/archive/v0.1.tar.gz',
-    keywords = ['StatusPage', 'StatusPageAPI', 'StatusPageConnector']
+    keywords = ['StatusPage', 'StatusPageAPI', 'StatusPageConnector'],
     classifiers = [],
 )
